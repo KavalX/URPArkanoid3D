@@ -3,7 +3,8 @@ using UnityEngine;
 public class Bricks : MonoBehaviour
 
 {
-
+    private BallShot _ballShot;
+    public GameObject MaxPaddlePU;
     public BrickType brickType;
 
     public GameObject fracturePrefab;
@@ -13,11 +14,46 @@ public class Bricks : MonoBehaviour
     public int MaxHealth;
     //public int pointsPerBrick;
 
-    
+    [SerializeField]
+    public static int brickCount = 0;
+
+
+    private void Start()
+    {
+
+        if (!GameObject.Find("Ball"))
+        {
+            return;
+
+        }
+        else { _ballShot.gameObject.GetComponent<BallShot>(); }
+
+
+    }
 
     private void Update()
     {
-        
+
+       
+
+        if (!GameObject.Find("Ball"))
+        {
+
+            return;
+
+
+        }
+
+        brickCount = _ballShot.sameBrickCount;
+
+        if (brickCount == 2)
+        {
+
+            Instantiate(MaxPaddlePU, this.gameObject.transform.position, Quaternion.identity);
+
+        }
+
+
     }
 
     private void OnCollisionEnter(Collision collision)

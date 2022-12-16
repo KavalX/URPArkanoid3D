@@ -38,7 +38,7 @@ public class BallShot : MonoBehaviour
 
     // Almacena el número de veces que se ha chocado con el mismo tipo de ladrillo
     [SerializeField]
-    private int sameBrickCount = 0;
+    public int sameBrickCount = 0;
 
     // Almacena el puntaje total
     [SerializeField]

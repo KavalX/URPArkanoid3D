@@ -6,19 +6,18 @@ public class BrickTest : MonoBehaviour
 {
     public Bricks brickTf;
 
-
-    public MeshRenderer p1; 
-    public MeshRenderer p2; 
-    public MeshRenderer p3; 
-    public MeshRenderer p4; 
-    public MeshRenderer p5;
-    public MeshRenderer p6;
-    public MeshRenderer p7;
-    public MeshRenderer p8;
+    public MeshRenderer p1,p2,p3,p4,p5,p6,p7,p8; 
 
     public int flashCount = 0; // contador para llevar el registro de cuántas veces ha parpadeado el cubo
     
     public float tiempo = 2.5f;
+
+
+    private void Start()
+    {
+        
+    }
+
 
     private void Update()
     {
