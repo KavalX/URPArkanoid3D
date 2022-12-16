@@ -2,32 +2,16 @@ using UnityEngine;
 
 public class PlatformMovement : MonoBehaviour
 {
-    [SerializeField]
-    Transform PlatformTransform;
-    [SerializeField]
-    int speed;
 
-    [SerializeField]
-    float maxX = -12f;
+    [SerializeField] int speed;
 
+    [SerializeField] float maxX = -12f;
+
+    [SerializeField] private Transform SpawnPos;
+
+    [SerializeField] public StateManager _stateManager;
 
     public GameObject ballPrefab;
-    [SerializeField]
-    private Transform SpawnPos;
-
-    [SerializeField]
-    public StateManager _stateManager;
-
-    public PlayerAbilities currentAbility;
-
-
-    void Awake()
-    {
-        // Obtener la referencia al prefab de la bola
-
-
-        PlatformTransform = GetComponent<Transform>();
-    }
 
     private void Update()
     {
@@ -41,24 +25,6 @@ public class PlatformMovement : MonoBehaviour
             }
         }
 
-        switch (currentAbility)
-        {
-            case PlayerAbilities.None:
-                // El jugador no tiene habilidades especiales
-                break;
-            case PlayerAbilities.SuperSpeed:
-                speed = 30;
-                break;
-            case PlayerAbilities.ExtraLife:
-                _stateManager.health = 3;
-                break;
-            case PlayerAbilities.MultiBall:
-                // El jugador tiene varias pelotas
-                break;
-
-        }
-
-
     }
     void FixedUpdate()
     {
@@ -69,6 +35,6 @@ public class PlatformMovement : MonoBehaviour
 
         transform.position = new Vector3(clampedX, transform.position.y, transform.position.z);
     }
-    }
+}
 
 
