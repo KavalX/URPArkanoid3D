@@ -8,8 +8,6 @@ public class PlatformMovement : MonoBehaviour
     int speed;
 
     [SerializeField]
-    float minX = 12f;
-    [SerializeField]
     float maxX = -12f;
 
 
@@ -65,36 +63,12 @@ public class PlatformMovement : MonoBehaviour
     void FixedUpdate()
     {
 
-        // Mover la plataforma hacia la izquierda si se presiona la flecha izquierda
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            PlatformTransform.Translate(Vector3.left * speed * Time.deltaTime);
+        float dir = Input.GetAxis("Horizontal");
+        float newX = transform.position.x + Time.deltaTime * speed * dir;
+        float clampedX = Mathf.Clamp(newX, -maxX, maxX);
 
-        }
-
-        // Mover la plataforma hacia la derecha si se presiona la flecha derecha
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            PlatformTransform.Translate(Vector3.right * speed * Time.deltaTime);
-        }
-
-        // Si el cubo se est� moviendo a la derecha y su posici�n en el eje x
-        // es mayor que la posici�n m�xima permitida, detenemos su movimiento
-        if (transform.position.x < maxX)
-        {
-            transform.position = new Vector3(maxX, transform.position.y, transform.position.z);
-        }
-        // Si el cubo se est� moviendo a la izquierda y su posici�n en el eje x
-        // es menor que la posici�n m�nima permitida, detenemos su movimiento
-        if (transform.position.x > minX)
-        {
-            transform.position = new Vector3(minX, transform.position.y, transform.position.z);
-        }
-        // Si el cubo se est� moviendo dentro del rango permitido, actualizamos su
-        // posici�n en el eje x seg�n la velocidad y la direcci�n en la que se est�
-        // moviendo
-
+        transform.position = new Vector3(clampedX, transform.position.y, transform.position.z);
     }
-}
+    }
 
 
